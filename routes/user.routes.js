@@ -8,4 +8,7 @@ app.post("/register", User.create);
 // Check user
 app.post("/login", User.login);
 
+//User Update
+app.post('/updateUser', User.updateUser);
+
 };

@@ -28,7 +28,7 @@ exports.create = (req, res) => {
     });
 };
 
-//Check user
+//Login user
 exports.login = (req, res) => {
     // Validate request
     if (!req.body) {
@@ -44,6 +44,21 @@ exports.login = (req, res) => {
                 message:
                     err.message || "Some error occurred while creating the User."
             });
+        else res.send(data);
+    });
+};
+
+exports.updateUser = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+    }
+    User.update(req.body.user_id, req.body.email, md5(req.body.password), (err, data) => {
+        if (err)
+            res.status(500).send({
+                    message: err.message
+                });
         else res.send(data);
     });
 };
