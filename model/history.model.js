@@ -32,6 +32,21 @@ History.check_out = (user_id, job_id, date_time, result) => {
     })
 }
 
+History.setFinished = (user_id, job_id, date_time, result) => {
+    sql.query(`UPDATE history SET finished_datetime='${date_time}' WHERE user_id=${user_id} AND job_id=${job_id}`, (err, res) => {
+        if (err)
+            result(err, null)
+        else
+            result(null, {updated: 1})
+    })
+}
 
+History.setUnallocated = (user_id, date, start_time, end_time, result) => {
+    sql.query(`INSERT INTO unallocate (user_id, day, start_time, end_time) VALUES (${user_id}, '${date}', '${start_time}', '${end_time}')`, (err, res) => {
+        if (err)
+            result(err, null)
+        else result(null, {unallocated: res.insertId})
+    })
+}
 
 module.exports = History

@@ -20,4 +20,24 @@ exports.check_out = (req, res) => {
     })
 }
 
+exports.setFinished = (req, res) => {
+    History.setFinished(req.body.user_id, req.body.job_id, req.body.date_time, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message: err.message
+            })
+        else
+            res.send(data)
+    })
+}
 
+exports.setUnallocated = (req, res) => {
+    History.setUnallocated(req.body.user_id, req.body.date, req.body.start_time, req.body.end_time, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message: err.message
+            })
+        else
+            res.send(data)
+    })
+}

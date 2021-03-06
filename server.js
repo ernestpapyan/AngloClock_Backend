@@ -44,6 +44,8 @@ require('./routes/worktime.routes')(app)
 
 require('./routes/history.routes')(app)
 
+require('./routes/break.routes')(app)
+
 // app.listen(4000, '0.0.0.0', () => {
 //   console.log("Server is running on port 4000.");
 // });
