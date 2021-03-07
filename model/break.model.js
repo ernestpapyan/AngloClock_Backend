@@ -43,4 +43,14 @@ Breaking.paidBreak = (user_id, job_id, start_datetime, end_datetime, reason, res
 
 }
 
+Breaking.getPaidBreak = (start_date, end_date, result) => {
+    sql.query(`SELECT b.*, u.name FROM break b 
+    LEFT JOIN user u ON u.user_id=b.user_id 
+    WHERE isPaid = 1 AND ((start_datetime BETWEEN '${start_date}' AND '${end_date}') 
+    AND (end_datetime BETWEEN '${start_date}' AND '${end_date}'))`, (err, res) => {
+        if (err)
+            result(err, null)
+        else result(null, res)
+    })
+}
 module.exports = Breaking;

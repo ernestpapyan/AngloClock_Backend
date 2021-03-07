@@ -4,4 +4,6 @@ module.exports = app => {
     app.post('/paidBreak', Breaking.paidBreak)
 
     app.post('/break', Breaking.notPaidBreak)
+
+    app.post('/getPaidBreak', Breaking.getPaidBreak)
 }

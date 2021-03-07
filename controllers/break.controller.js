@@ -19,3 +19,14 @@ exports.paidBreak = (req, res) => {
         else res.send(data)
     })
 }
+
+exports.getPaidBreak = (req, res) => {
+    Breaking.getPaidBreak(req.body.start_date, req.body.end_date, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message: err.message
+            })
+        else
+            res.send(data)
+    })
+}
